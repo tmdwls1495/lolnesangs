@@ -1,0 +1,549 @@
+/* ---------- 기본 ---------- */
+@font-face {
+  font-family: "lolfont";
+  src: url("./assets/rix-modern-gothic-b.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  /* ★ 페이지 전체 배경 사진: none 을 url("사진 링크") 로 바꿔주세요.
+     예) --page-bg: url("./assets/page-bg.jpg"); */
+  --page-bg: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "lolfont", sans-serif;
+}
+
+/* 실제 페이지 배경 (화면 전체를 꽉 채움) */
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background-color: rgb(24, 31, 37); /* 사진이 없거나 로딩 전 기본색 */
+  background-image: var(--page-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* 예전 .background → .stage (1371x800 픽창 영역) */
+.stage {
+  position: relative;
+  display: flex;
+  z-index: 1;
+  width: 1371px;
+  height: 800px;
+  margin: auto auto 0 auto;
+}
+
+#bgImg {
+  position: absolute;
+  z-index: -1;
+  width: 1371px;
+  height: 800px;
+}
+
+#bgImg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app-footer {
+  width: 1371px;
+  margin: 0 auto auto auto;
+  background: rgba(30, 37, 46, 0.9);
+  padding: 6px 0;
+  text-align: center;
+  color: #fff;
+  font-size: 10.6px;
+  border-top: 1px solid #444;
+}
+
+/* ---------- 음악 버튼 ---------- */
+#musicToggle {
+  position: absolute;
+  top: 38px;
+  right: 282px;
+  z-index: 1000;
+  background-color: #1e252e;
+  color: white;
+  border: 2px solid #d4af37;
+  font-size: 12.19px;
+  height: 25px;
+  width: 76px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#musicToggle:hover {
+  background-color: #0f1217;
+  color: rgb(211, 211, 211);
+  border-color: #7b6621;
+}
+
+/* ---------- 좌측: 픽창 ---------- */
+#pick {
+  width: 1128px;
+  height: 800px;
+  color: white;
+}
+
+#roomTitle {
+  padding: 40px 76px 30px 30px; /* 위쪽 여백 76 → 40 */
+}
+
+#roomTitleFirst {
+  display: flex;
+}
+
+#titleImg {
+  margin-top: 1.5px;
+  width: 38px;
+  height: 38px;
+  background: url("./assets/title.png") no-repeat center / cover;
+}
+
+#roomTitleWord {
+  padding: 0 15px;
+  font-size: 26px;
+  line-height: 41px;
+  color: rgb(255, 246, 227);
+  white-space: nowrap;
+}
+
+#roomSubTitle {
+  display: flex;
+  padding: 0 46px;
+}
+
+#roomSubTitle > p {
+  padding: 4px 15px 4px 4px;
+  font-size: 13.7px;
+  color: rgba(255, 246, 227, 0.734);
+}
+
+#room {
+  display: flex;
+  padding: 8px 62px;
+  height: 298px;
+}
+
+.roomTeamCover > div {
+  width: 465px;
+  padding: 0 0 0 11px;
+  margin-right: 0;
+}
+
+.roomTeam {
+  font-size: 16.8px;
+  color: rgba(255, 246, 227, 0.734);
+  height: 49.5px;
+  line-height: 49.5px;
+}
+
+.summoner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 14px !important;
+  border-bottom: 1px solid grey;
+  height: 48.8px;
+}
+
+.laneIcon {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+/* 이름 왼쪽 아이콘: 자리는 항상 차지, 이름이 있을 때만 보임 */
+.nameIcon {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-left: 3px; /* 라인 아이콘과 살짝 간격 */
+  margin-right: -2px;
+  visibility: hidden;
+}
+
+.nameIcon.on {
+  visibility: visible;
+  border-radius: 70%;
+  object-fit: cover;
+}
+
+/* src가 비어 있으면 자리만 유지하고 숨김 */
+.laneIcon:not([src]),
+.laneIcon[src=""] {
+  visibility: hidden;
+}
+
+.sumNameInput,
+.sumPointInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #a09b8c;
+  font-size: 15.2px;
+  height: 34px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.sumNameInput {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.sumPointInput {
+  flex: none;
+  width: 90px;
+  text-align: right;
+  -moz-appearance: textfield;
+  
+}
+
+.sumPointInput::-webkit-outer-spin-button,
+.sumPointInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.sumNameInput::placeholder,
+.sumPointInput::placeholder {
+  color: rgba(128, 128, 128, 0.557);
+}
+
+.sumNameInput:focus,
+.sumPointInput:focus {
+  color: #f0e6d2;
+  border-bottom: 1px solid #c8aa6e;
+}
+
+/* ---------- 가운데: 스왑 버튼 ---------- */
+#swapCol {
+  flex: none;
+  width: 44px;
+}
+
+.swapHead {
+  height: 49.5px;
+}
+
+.swapCell {
+  height: 49.8px; /* .summoner 높이(48.8 + 테두리 1) 와 동일 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swapBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  background: #1e252e;
+  border: 1px solid #c8aa6e;
+  color: #c8aa6e;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.swapBtn img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.swapBtn:hover {
+  background: #0f1217;
+  transform: scale(1.12);
+}
+
+.swapBtn:active {
+  transform: scale(0.92);
+}
+
+/* ---------- 우측: 커뮤니티창 ---------- */
+#community {
+  display: flex;
+  flex-direction: column;
+  width: 245px;
+  height: 800px;
+  background: linear-gradient(180deg, #0a1a28 0%, #06111b 55%, #030a11 100%);
+  border-left: 1px solid #463714;
+  box-shadow: inset 1px 0 0 rgba(200, 170, 110, 0.15);
+}
+
+#comTitle {
+  flex: none;
+  display: flex;
+  padding: 11.4px;
+  width: calc(100% - 22.9px);
+  height: 68.6px;
+  border-bottom: 1px solid rgba(252, 253, 224, 0.243);
+}
+
+.comTitleImg {
+  display: block;
+  width: 64.8px;
+  height: 64.8px;
+  border-radius: 70%;
+  object-fit: cover;
+}
+
+#comTitleStateCover {
+  width: 150px;
+  margin: 15px 11.4px;
+}
+
+#comTitleName {
+  width: 130.7px;
+  color: rgba(251, 251, 235, 0.928);
+  background-color: transparent;
+  font-size: 17px;
+  border: none;
+  outline: none;
+}
+
+#comTitleState {
+  font-size: 13.2px;
+  color: #009f3f;
+  margin: 4.6px 0;
+  margin-top: 8px ;
+}
+
+/* ---------- 우측 패널 (최신 클라이언트 스타일: 플랫 · 유리 질감 · 얇은 금색 포인트) ---------- */
+#summonerList {
+  --gold: #c8aa6e;
+  --teal: #0ac8b9;
+  --danger: #e84057;
+  --text: #e9e3d3;
+  --muted: #8b8a85;
+  --line: rgba(255, 255, 255, 0.08);
+
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 14px 16px;
+  color: var(--text);
+}
+
+.panelDivider {
+  flex: none;
+  height: 1px;
+  background: var(--line);
+}
+
+/* 점수판: 1팀 파랑 / 2팀 빨강 하단 포인트 */
+#scoreBoard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.scoreTeam {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+
+.scoreTeam:first-child { box-shadow: inset 0 -2px 0 #4f8cff; }
+.scoreTeam:last-child  { box-shadow: inset 0 -2px 0 var(--danger); }
+
+.scoreLabel {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.scoreValue {
+  margin-top: 4px;
+  font-size: 30px;
+  line-height: 1.1;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.scoreVs {
+  font-size: 12px;
+  color: #6b6a66;
+}
+
+/* 버튼 공통: 플랫 + 둥근 모서리, hover 시 살짝 밝아짐 */
+#copyBalanceBtn,
+#applyBtn,
+#diceBtn,
+#resetBtn,
+#tournamentBtn {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease,
+    box-shadow 0.18s ease, transform 0.12s ease;
+}
+
+#copyBalanceBtn:hover,
+#diceBtn:hover,
+#tournamentBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(200, 170, 110, 0.55);
+}
+
+#copyBalanceBtn:active,
+#applyBtn:active,
+#diceBtn:active,
+#resetBtn:active,
+#tournamentBtn:active {
+  transform: scale(0.98);
+}
+
+#copyBalanceBtn:focus-visible,
+#applyBtn:focus-visible,
+#diceBtn:focus-visible,
+#resetBtn:focus-visible,
+#tournamentBtn:focus-visible,
+#lineupInput:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* 주 버튼(적용): 금색 채움 */
+#applyBtn {
+  flex: 1;
+  width: auto;
+  color: #1a1408;
+  background: linear-gradient(135deg, #dcc07a, #b38d45);
+  border-color: transparent;
+}
+
+#applyBtn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 0 14px rgba(200, 170, 110, 0.4);
+}
+
+/* 보조 버튼(주사위): 청록 글자 */
+#diceBtn {
+  flex: 1;
+  width: auto;
+  color: var(--teal);
+}
+
+/* 토너먼트 코드: 외부 링크 버튼 */
+#tournamentBtn {
+  margin-top: -4px; /* 초기화 버튼 바로 아래 붙도록 간격 축소 */
+  color: var(--teal);
+  border-color: rgba(10, 200, 185, 0.35);
+}
+
+/* 초기화: 패널 맨 아래, 위험 동작이라 hover 때만 붉게 */
+#resetBtn {
+  margin-top: auto;
+  color: var(--muted);
+}
+
+#resetBtn:hover {
+  color: var(--danger);
+  background: rgba(232, 64, 87, 0.1);
+  border-color: rgba(232, 64, 87, 0.5);
+}
+
+/* 라인 희망 입력 */
+#lineupInput {
+  display: block;
+  width: 100%;
+  height: 210px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  resize: none;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 12.2px;
+  line-height: 1.6;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#lineupInput::placeholder {
+  color: rgba(160, 155, 140, 0.45);
+}
+
+#lineupInput:focus {
+  border-color: rgba(200, 170, 110, 0.7);
+  box-shadow: 0 0 0 3px rgba(200, 170, 110, 0.15);
+}
+
+#lineupBtnWrap {
+  display: flex;
+  gap: 8px;
+}
+
+#lineupMsg {
+  min-height: 18px;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--muted);
+  white-space: pre-line;
+}
+
+#lineupMsg.error {
+  color: var(--danger);
+}
+
+/* ---------- 배정 불가 경고: 해당 칸 빨간 테두리 (3초, script.js 에서 제거) ---------- */
+.summoner.warn {
+  outline: 2px solid var(--danger, #e84057);
+  outline-offset: -2px;
+  border-radius: 6px;
+  background: rgba(232, 64, 87, 0.12);
+  animation: warnPulse 1s ease-in-out 3;
+}
+
+@keyframes warnPulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(232, 64, 87, 0); }
+  50%      { box-shadow: 0 0 14px rgba(232, 64, 87, 0.6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .summoner.warn { animation: none; }
+}

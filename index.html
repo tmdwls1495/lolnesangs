@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>롤 내전</title>
+    <link rel="icon" href="./assets/lolIcon.png" />
+    <link rel="apple-touch-icon" href="./assets/lolIcon.png" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- 기존 .background div → .stage 로 이름 변경 (실제 페이지 배경은 style.css 의 --page-bg 에서 설정) -->
+      <div class="stage">
+        <picture id="bgImg">
+          <source srcset="./assets/bgimg.png" type="image/webp" />
+          <img src="./assets/bgimg.png" alt="배경" />
+        </picture>
+
+        <!-- 좌측: 픽창 -->
+        <section id="pick">
+          <div id="roomTitle">
+            <div id="roomTitleFirst">
+              <div id="titleImg"></div>
+              <div id="roomTitleWord">롤네상스 내전 팀 밸런스 사이트</div>
+            </div>
+            <div id="roomSubTitle">
+              <p>소환사의 협곡</p>
+              <p>5대5</p>
+              <p>토너먼트 드래프트</p>
+            </div>
+          </div>
+
+          <div id="room">
+            <div class="roomTeamCover" id="teamA">
+              <div class="roomTeam">1팀</div>
+              <div class="summoner" data-team="1" data-lane="top">
+                <img class="laneIcon" src="assets/top.png" alt="탑" />
+                <input class="sumNameInput" type="text" placeholder="비어 있음" aria-label="1팀 탑 이름" />
+                <input class="sumPointInput" type="number" min="0" placeholder="포인트" aria-label="1팀 탑 포인트" />
+              </div>
+              <div class="summoner" data-team="1" data-lane="jungle">
+                <img class="laneIcon" src="assets/jg.png" alt="정글" />
+                <input class="sumNameInput" type="text" placeholder="비어 있음" aria-label="1팀 정글 이름" />
+                <input class="sumPointInput" type="number" min="0" placeholder="포인트" aria-label="1팀 정글 포인트" />
+              </div>
+              <div class="summoner" data-team="1" data-lane="mid">
+                <img class="laneIcon" src="assets/mid.png" alt="미드" />
+                <input class="sumNameInput" type="text" placeholder="비어 있음" aria-label="1팀 미드 이름" />
+                <input class="sumPointInput" type="number" min="0" placeholder="포인트" aria-label="1팀 미드 포인트" />
+              </div>
+              <div class="summoner" data-team="1" data-lane="adc">
+                <img class="laneIcon" src="assets/ad.png" alt="원딜" />
+                <input class="sumNameInput" type="text" placeholder="비어 있음" aria-label="1팀 원딜 이름" />
+                <input class="sumPointInput" type="number" min="0" placeholder="포인트" aria-label="1팀 원딜 포인트" />
+              </div>
+              <div class="summoner" data-team="1" data-lane="support">
+                <img class="laneIcon" src="assets/sup.png" alt="서폿" />
+                <input class="sumNameInput" type="text" placeholder="비어 있음" aria-label="1팀 서폿 이름" />
+                <input class="sumPointInput" type="number" min="0" placeholder="포인트" aria-label="1팀 서폿 포인트" />
+              </div>
+            </div>
+
+            <!-- 가운데: 같은 라인 좌우 스왑 버튼 -->
+            <div id="swapCol">
+              <div class="swapHead"></div>
+              <div class="swapCell"><button class="swapBtn" type="button" data-lane="top" aria-label="탑 좌우 교체" title="탑 좌우 교체">⇄</button></div>
+              <div class="swapCell"><button class="swapBtn" type="button" data-lane="jungle" aria-label="정글 좌우 교체" title="정글 좌우 교체">⇄</button></div>
+              <div class="swapCell"><button class="swapBtn" type="button" data-lane="mid" aria-label="미드 좌우 교체" title="미드 좌우 교체">⇄</button></div>
+              <div class="swapCell"><button class="swapBtn" type="button" data-lane="adc" aria-label="원딜 좌우 교체" title="원딜 좌우 교체">⇄</button></div>
+              <div class="swapCell"><button class="swapBtn" type="button" data-lane="support" aria-label="서폿 좌우 교체" title="서폿 좌우 교체">⇄</button></div>
+            </div>
+
+            <div class="roomTeamCover" id="teamB">
+              <div class="roomTeam">2팀</div>
+              <div class="summoner" data-team="2" data-lane="top">
+                <img class="laneIcon" src="assets/top.png" alt="탑" />
+                <input class="sumNameInput" type="text" placeholder="비어 있음" aria-label="2팀 탑 이름" />
+                <input class="sumPointInput" type="number" min="0" placeholder="포인트" aria-label="2팀 탑 포인트" />
+              </div>
+              <div class="summoner" data-team="2" data-lane="jungle">
+                <img class="laneIcon" src="assets/jg.png" alt="정글" />
+                <input class="sumNameInput" type="text" placeholder="비어 있음" aria-label="2팀 정글 이름" />
+                <input class="sumPointInput" type="number" min="0" placeholder="포인트" aria-label="2팀 정글 포인트" />
+              </div>
+              <div class="summoner" data-team="2" data-lane="mid">
+                <img class="laneIcon" src="assets/mid.png" alt="미드" />
+                <input class="sumNameInput" type="text" placeholder="비어 있음" aria-label="2팀 미드 이름" />
+                <input class="sumPointInput" type="number" min="0" placeholder="포인트" aria-label="2팀 미드 포인트" />
+              </div>
+              <div class="summoner" data-team="2" data-lane="adc">
+                <img class="laneIcon" src="assets/ad.png" alt="원딜" />
+                <input class="sumNameInput" type="text" placeholder="비어 있음" aria-label="2팀 원딜 이름" />
+                <input class="sumPointInput" type="number" min="0" placeholder="포인트" aria-label="2팀 원딜 포인트" />
+              </div>
+              <div class="summoner" data-team="2" data-lane="support">
+                <img class="laneIcon" src="assets/sup.png" alt="서폿" />
+                <input class="sumNameInput" type="text" placeholder="비어 있음" aria-label="2팀 서폿 이름" />
+                <input class="sumPointInput" type="number" min="0" placeholder="포인트" aria-label="2팀 서폿 포인트" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 우측: 커뮤니티창 -->
+        <aside id="community">
+          <div id="comTitle">
+            <picture>
+              <source srcset="./assets/icon.webp" type="image/webp" />
+              <img class="comTitleImg" src="./assets/icon.jpg" alt="프로필" />
+            </picture>
+            <div id="comTitleStateCover">
+              <input id="comTitleName" type="text" value="롤네상스" aria-label="내 이름" />
+              <div id="comTitleState">● 온라인</div>
+            </div>
+          </div>
+
+          <div id="summonerList">
+            <div class="panelDivider"></div>
+            <div id="scoreBoard">
+              <div class="scoreTeam">
+                <div class="scoreLabel">1팀</div>
+                <div class="scoreValue" id="scoreA">0</div>
+              </div>
+              <div class="scoreVs">VS</div>
+              <div class="scoreTeam">
+                <div class="scoreLabel">2팀</div>
+                <div class="scoreValue" id="scoreB">0</div>
+              </div>
+            </div>
+            <button id="copyBalanceBtn" type="button">밸런스 복사</button>
+            <div class="panelDivider"></div>
+            <textarea id="lineupInput" rows="10" spellcheck="false"
+              placeholder="포인트P/이름 - 원하는 라인&#10;17P/오윤석 - 원딜,정글&#10;15P/백종우 - 정글&#10;22P/인승진 - 정글, 미드&#10;23P/최용수 - ALL"></textarea>
+            <div id="lineupBtnWrap">
+              <button id="applyBtn" type="button">적용</button>
+              <button id="diceBtn" type="button">주사위</button>
+            </div>
+            <div id="lineupMsg"></div>
+            
+            <button id="resetBtn" type="button">초기화</button>
+            <button id="tournamentBtn" type="button">토너먼트 코드</button>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="app-footer"></footer>
+    </div>
+
+    <audio id="bgm" src="./assets/bgm.wav" loop preload="none"></audio>
+    <script src="./script.js"></script>
+  </body>
+</html>
