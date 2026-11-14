@@ -19,7 +19,7 @@
   // 이름을 적으면 이름 왼쪽에 나타나는 아이콘 (모든 선수 공통). 비워두면 표시하지 않음
   const NAME_ICON = './assets/icon.webp';
   // '토너먼트 코드' 버튼을 누르면 새 탭으로 열리는 링크 (비워두면 안내 문구가 표시됨)
-  const TOURNAMENT_URL = 'https://example.com';
+  const TOURNAMENT_URL = 'http://clash.deeplol.gg/tournament';
 
   // =====================================================
   // 라인업 파싱 + 팀 밸런싱
