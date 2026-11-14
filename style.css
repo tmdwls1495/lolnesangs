@@ -31,7 +31,10 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-
+.code{
+  font-size: 13px;
+  text-align: center;
+}
 .app {
   display: flex;
   align-items: center;
